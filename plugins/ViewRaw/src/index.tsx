@@ -20,7 +20,7 @@ const unpatch = before("openLazy", LazyActionSheet, ([component, key, msg]) => {
     component.then(instance => {
         const unpatch = after("default", instance, (_, component) => {
             React.useEffect(() => () => { unpatch() }, [])
-            const buttons = findInReactTree(comp, c => c?.find?.(child => child?.props?.label == i18n?.Messages?.MESSAGE_ACTION_REPLY))
+            const buttons = findInReactTree(component, c => c?.find?.(child => child?.props?.label == i18n?.Messages?.MESSAGE_ACTION_REPLY))
             if (!buttons) return
 
             const navigator = () => (
