@@ -23,6 +23,12 @@ const unpatch = before("openLazy", LazyActionSheet, ([component, key, msg]) => {
             const buttons = findInReactTree(component, c => c?.find?.(child => child?.props?.label == i18n?.Messages?.MESSAGE_ACTION_REPLY))
             if (!buttons) return
 
+            const position = Math.max(
+				        buttons.findIndex((x) => x?.props?.label == i18n?.Messages?.MESSAGE_ACTION_REPLY), 
+				        buttons.length - 1
+			      );
+            const targetPos = position || 1;
+
             const navigator = () => (
                 <Navigator
                     initialRouteName="RawPage"
@@ -37,7 +43,9 @@ const unpatch = before("openLazy", LazyActionSheet, ([component, key, msg]) => {
                 />
             )
 
-            buttons.push(
+           
+
+            buttons.splice(targetPos, 0, (
                 <FormRow
                     label="View Raw"
                     leading={<FormIcon style={{ opacity: 1 }} source={getAssetIDByName("ic_chat_bubble_16px")} />}
@@ -46,7 +54,7 @@ const unpatch = before("openLazy", LazyActionSheet, ([component, key, msg]) => {
                         Navigation.push(navigator)
                     }}
                 />
-            )
+            ))
         })
     })
 })
