@@ -2,7 +2,7 @@ import { before, after } from "@vendetta/patcher"
 import { getAssetIDByName } from "@vendetta/ui/assets"
 import { findInReactTree } from "@vendetta/utils"
 import { findByName, findByProps } from "@vendetta/metro"
-import { React } from "@vendetta/metro/common"
+import { React, i18n } from "@vendetta/metro/common"
 import { Forms } from "@vendetta/ui/components"
 import RawPage from "./RawPage"
 
@@ -20,7 +20,7 @@ const unpatch = before("openLazy", LazyActionSheet, ([component, key, msg]) => {
     component.then(instance => {
         const unpatch = after("default", instance, (_, component) => {
             React.useEffect(() => () => { unpatch() }, [])
-            const buttons = findInReactTree(component, x => x?.[0]?.type?.name === "ButtonRow")
+            const buttons = findInReactTree(comp, c => c?.find?.(child => child?.props?.label == i18n?.Messages?.MESSAGE_ACTION_REPLY))
             if (!buttons) return
 
             const navigator = () => (
