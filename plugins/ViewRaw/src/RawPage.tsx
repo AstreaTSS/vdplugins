@@ -34,7 +34,7 @@ export default function RawPage({ message }) {
                     showToast("Copied data to clipboard", getAssetIDByName("toast_copy_link"))
                 }}
             />
-            {message.content && <Codeblock selectable style={style}>{message.content}</Codeblock>}
+            {message.content && <Codeblock selectable onPress={() => {}} style={style}>{message.content}</Codeblock>}
             <Codeblock selectable>{stringMessage}</Codeblock>
         </ScrollView>
     </>)
