@@ -23,8 +23,8 @@ const useStyles = stylesheet.createThemedStyleSheet({
 });
 
 // iOS doesn't support the selectable property on RN.Text...
-const InputBasedCodeblock = ({ style, children }: CodeblockProps) => <ReactNative.TextInput editable={false} multiline style={[useStyles().codeBlock, style && style]} value={children} />;
-const TextBasedCodeblock = ({ selectable, style, children }: CodeblockProps) => <ReactNative.Text selectable={selectable} style={[useStyles().codeBlock, style && style]}>{children}</ReactNative.Text>;
+const InputBasedCodeblock = ({ style, children }: CodeblockProps) => <ReactNative.TextInput editable={false} multiline style={[useStyles.codeBlock, style && style]} value={children} />;
+const TextBasedCodeblock = ({ selectable, style, children }: CodeblockProps) => <ReactNative.Text selectable={selectable} style={[useStyles.codeBlock, style && style]}>{children}</ReactNative.Text>;
 
 export default function Codeblock({ selectable, style, children }: CodeblockProps) {
     if (!selectable) return <TextBasedCodeblock style={style} children={children} />;
