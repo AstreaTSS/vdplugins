@@ -1,6 +1,5 @@
-import { constants } from "@vendetta/metro/common";
-import { semanticColors } from "@vendetta/ui/color";
-import { createStyles } from "@vendetta/ui/styles";
+import { constants, stylesheet } from "@vendetta/metro/common";
+import { semanticColors } from "@vendetta/ui";
 import { ReactNative } from "@vendetta/metro/common";
 
 export interface CodeblockProps {
@@ -9,7 +8,7 @@ export interface CodeblockProps {
     children?: string;
 }
 
-const useStyles = createStyles({
+const useStyles = stylesheet.createThemedStyleSheet({
     codeBlock: {
         fontFamily: constants.Fonts.CODE_NORMAL,
         fontSize: 12,
